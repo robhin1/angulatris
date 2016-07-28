@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>ng</title>
+        <meta id="Viewport" name="viewport"/>
+        
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova.js"></script>      
+        <!-- jquery -->
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>        
+        <!-- angular -->
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+
+        <!-- app -->
+        <script type="text/javascript" src="js/includes-for-older-browsers.js"></script>  
+        <script type="text/javascript" src="output/bundle.js"></script>
+        <link href="css/reset.css" rel="stylesheet"/>
+        <link href="output/app.css" rel="stylesheet">
+
+    </head>
+    <body class="app-noselect" ng-app="app" ng-controller="AppCtrl as appCtrl" ng-keydown="appCtrl.kd($event)">
+      <div ng-show="appCtrl.Shared.game.over || !appCtrl.Shared.game.started || appCtrl.Shared.game.paused" class="app-modal">
+        <button class="app-centered app-start-button" ng-hide="appCtrl.Shared.game.started" ng-click="appCtrl.Shared.game.started = true">START<br/>by Roberto Hinojosa</button>
+        <div class="app-centered app-label-and-button" style="display:inline-block" ng-show="appCtrl.Shared.game.over">
+          <div class="app-gameover-label">GAMEOVER</div>
+          <br/><br/><br/><br/>
+          <button ng-click="appCtrl.restart()">PLAY AGAIN</button>
+        </div>
+        <div class="app-centered app-label-and-button" style="display:inline-block" ng-show="appCtrl.Shared.game.paused">
+          <div class="app-paused-label">PAUSED</div>
+          <br/><br/><br/><br/>
+          <button ng-click="appCtrl.kd(13)">RESUME</button>
+        </div>
+      </div>
+      <div id="app-loading-modal" class="app-modal app-loading">
+        <div class="app-message">LOADING...</div>
+      </div>
+      <div class="app-all">      
+        <div class="app-first-row">
+          <div class="app-left-column">
+            <app-board class="app-game-board" app-rows="appCtrl.Model.rows"/>
+          </div>
+          <div class="app-right-column">
+            <div class="app-score-wrapper">
+              <div class="app-score-label">SCORE</div>
+              <div class="app-score">{{appCtrl.Shared.score.points}}</div>
+            </div>
+            <div class="app-level-wrapper">
+              <div class="app-level-label">LEVEL</div>
+              <div class="app-level">{{appCtrl.Shared.difficulty.level}}</div>
+            </div>
+            <div class="app-lines-wrapper">
+              <div class="app-lines-label">LINES</div>
+              <div class="app-lines">{{appCtrl.Shared.score.numOfRowsCleared}}</div>
+            </div>
+            <div>
+              <app-next-shape-board shape="appCtrl.Utils.nextRandomShape"/>
+            </div>
+          </div>
+        </div>
+        <div class="app-second-row">
+          <app-controls/>
+        </div>
+        <div id="app-contact-info">All rights reserved. Contact me: <a href="mailto:rhinojosahdz@gmail.com?Subject=Hi,%20I%20checked%20your%20tetris%20app." target="_top">rhinojosahdz@gmail.com</a></div>
+      </div>
+    </body>
+    <script type="text/javascript" src="js/responsive-design.js"></script>
+</html>

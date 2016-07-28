@@ -1,0 +1,6 @@
+node_modules/
+www/output/
+www/bower_components/
+hooks/
+platforms/
+plugins/
