@@ -36,12 +36,12 @@
       <div id="app-loading-modal" class="app-modal app-loading">
         <div class="app-message">LOADING...</div>
       </div>
-      <div class="app-all">      
+      <div id="app-all" class="app-all">      
         <div class="app-first-row">
-          <div class="app-left-column">
+          <div id="app-left-column" class="app-left-column">
             <app-board class="app-game-board" app-rows="appCtrl.Model.rows"/>
           </div>
-          <div class="app-right-column">
+          <div id="app-right-column" class="app-right-column">
             <div class="app-score-wrapper">
               <div class="app-score-label">SCORE</div>
               <div class="app-score">{{appCtrl.Shared.score.points}}</div>
