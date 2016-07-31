@@ -1,35 +1,25 @@
 setTimeout(function () {
   //@TODO on resize rerun this
   $(function () {
-    debugger;
     var screenWidth = ($(window).width() < window.screen.width) ? $(window).width() : window.screen.width; //get proper width
     var screenHeight = ($(window).height() < window.screen.height) ? $(window).height() : window.screen.height; //get proper height
-    var pageWidth = $('#app-left-column').width() + $('#app-right-column').width(); // min width of site
-    var pageHeight = $('#app-all').height(); // min height of site
+    var pageWidth = 310;//$('#app-left-column').width() + $('#app-right-column').width(); // old phones don't seem to calculate the width correctly using this commented code, so we can run this on the desktop browser and hardcode it for now... same thing for the line under (pageHeight)
+    var pageHeight = 701;//$('#app-all').height(); // min height of site
     var widthRatio = screenWidth / pageWidth; //calculate ratio
     var heightRatio = screenHeight / pageHeight; //calculate ratio
     var minRatio = Math.min(widthRatio, heightRatio);
     var maxRatio = Math.max(widthRatio, heightRatio);
-    $('#Viewport').attr('content', 'initial-scale=' + minRatio + ', user-scalable=no');
+    $('#Viewport').attr('content', 'user-scalable=no');
+    var newZoom = (minRatio < 1 || maxRatio < 1) ? minRatio * .90 : maxRatio * .85;
+    //@zone:zoom si el segundo digito de los decimales del zoom termina en un numero impar los bloques de tetris se muestran raros
+    newZoom = /\d.*\.\d\d/.exec(newZoom)[0];
+    if (newZoom[newZoom.length - 1] % 2) {
+      newZoom -= .01;
+    }
+    //\@zone:zoom
+    document.body.style.zoom = newZoom;
 
-    var customScaleThisScreen = function () {
-      var contentWidth = document.body.scrollWidth,
-        windowWidth = window.innerWidth,
-        newScaleWidth = windowWidth / contentWidth;
-      var contentHeight = document.body.scrollHeight, //document.body.scrollHeight (for some reason this value used to give a value similar to pageHeight but now the value is way bigger (at least in my old phone))
-        windowHeight = window.innerHeight,
-        newScaleHeight = windowHeight / contentHeight;
-      var minZoom = Math.min(newScaleWidth, newScaleHeight);
-      var maxZoom = Math.max(newScaleWidth, newScaleHeight);
-      var newZoom = (minZoom < 1 || maxZoom < 1) ? minZoom : maxZoom;
-      newZoom *= .95;
-      //@zone:zoom si el segundo digito de los decimales del zoom termina en un numero impar los bloques de tetris se muestran raros
-      newZoom = /\d.*\.\d\d/.exec(newZoom)[0];
-      if (newZoom[newZoom.length - 1] % 2) {
-        newZoom -= .01;
-      }
-      //\@zone:zoom
-      document.body.style.zoom = newZoom;
+    var hideLoadingModal = function () {
       var el = $('#app-loading-modal');
       setTimeout(function () {
         el.fadeOut('slow', function () {
@@ -37,7 +27,7 @@ setTimeout(function () {
         });
       }, 1000);
     }
-    customScaleThisScreen();
+    hideLoadingModal();
     if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
       //WE ARE ON A PHONE
       //document.addEventListener("deviceready", onDeviceReady, false);
