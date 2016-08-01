@@ -63,7 +63,6 @@ setTimeout(function () {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(function () {
         resizeFinal();
-        console.log('resized');
       }, 1000);
     });
     var hideLoadingModal = function () {

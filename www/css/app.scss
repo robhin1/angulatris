@@ -6,9 +6,9 @@ body {
 }
 
 .app-all {
-  #app-contact-info{
+  .app-contact-info{
     text-align:center;
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
   .app-first-row{
     display: flex;
@@ -18,7 +18,7 @@ body {
     display: flex;
     justify-content: center;
   }
-  margin-top: 20px*$pxMultiplier;
+  margin-top: 10px*$pxMultiplier;
   .app-board {
     background-color: lightgray;
     padding-bottom: -10px*$pxMultiplier;
