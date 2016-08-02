@@ -4,8 +4,8 @@ setTimeout(function () {
 
     var pageWidth = 312; //$('#app-left-column').width() + $('#app-right-column').width(); // old phones don't seem to calculate the width correctly using this commented code, so we can run this on the desktop browser and hardcode it for now... same thing for the line under (pageHeight)
     var pageHeight = 700; //$('#app-all').height(); // min height of site
-    var browserAdjustment = .90;
-    var mobileAdjustment = .95;
+    var browserAdjustment = .88;
+    var mobileAdjustment = .93;
 
     var roundDecimalsTo2AndMakeSureItEndsInAEvenNumber = function (oldZoom) {
       var newZoom;
@@ -42,12 +42,6 @@ setTimeout(function () {
         newScaleHeight = windowHeight / pageHeight;
       var newZoom = Math.min(newScaleWidth, newScaleHeight) * mobileAdjustment;
       document.body.style.zoom = roundDecimalsTo2AndMakeSureItEndsInAEvenNumber(newZoom);
-      var el = $('#app-loading-modal');
-      setTimeout(function () {
-        el.fadeOut('slow', function () {
-          el.remove();
-        });
-      }, 1000);
     }
 
     var resizeFinal = function () {
@@ -58,7 +52,7 @@ setTimeout(function () {
       }
     }
     resizeFinal();
-    let resizeTimeout;
+    var resizeTimeout;
     $(window).resize(function () {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(function () {

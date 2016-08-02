@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <title>ng</title>
+        <title>Angulartris</title>
+        <meta charset="UTF-8">
         <meta id="Viewport" name="viewport" content="user-scalable=no"/>
         
         <!-- cordova -->
+        <!-- REMEMBER TO REMOVE THIS IN 000WEBHOST AS IT CAUSES WEIRD CONSOLE ERRORS -->
         <script type="text/javascript" src="cordova.js"></script>      
         <!-- jquery -->
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>        
@@ -17,7 +18,11 @@
         <script type="text/javascript" src="output/bundle.js"></script>
         <link href="css/reset.css" rel="stylesheet"/>
         <link href="output/app.css" rel="stylesheet">
-
+      
+        <!-- responsive design -->
+        <script type="text/javascript" src="js/responsive-design.js"></script>
+      
+        <!-- @TODO flex doesn't seem to work correctly in iphone 4s (and probably lower), but it may be that I have a very old version of iOS (7.0.4) -->
     </head>
     <body class="app-noselect" ng-app="app" ng-controller="AppCtrl as appCtrl" ng-keydown="appCtrl.kd($event)">
       <div ng-show="appCtrl.Shared.game.over || !appCtrl.Shared.game.started || appCtrl.Shared.game.paused" class="app-modal">
@@ -66,5 +71,4 @@
         </div>
       </div>
     </body>
-    <script type="text/javascript" src="js/responsive-design.js"></script>
 </html>
