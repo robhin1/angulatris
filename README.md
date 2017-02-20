@@ -1,7 +1,7 @@
 # angulatris
 A cool tetris game developed in AngularJS and Cordova. It works both as a Mobile App and in the Web browser.
 
-Demo: http://angularguy.net
+Demo: http://angularguy.net/angulatris
 
 
 ## To make it work in the web browser
